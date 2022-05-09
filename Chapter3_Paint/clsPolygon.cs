@@ -16,6 +16,7 @@ namespace Chapter3_Paint
 
         public override GraphicsPath GetPath()
         {
+             
             GraphicsPath path = new GraphicsPath();
             if (points.Count < 3)
             {

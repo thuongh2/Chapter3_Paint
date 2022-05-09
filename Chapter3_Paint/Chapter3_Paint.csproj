@@ -125,5 +125,20 @@
   <ItemGroup>
     <None Include="Resources\icon-pen.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\solid.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dash-dot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\solid1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dash-dot1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

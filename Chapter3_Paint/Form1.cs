@@ -16,7 +16,7 @@ namespace Chapter3_Paint
         Color myColor = Color.Red;
         System.Drawing.Drawing2D.DashStyle dashStyle;
         Pen myPen;
-        bool bLine = false;
+        bool bLine = true;
         bool bRect = false;
         bool bEcllipse = false;
         bool bSquare = false;
@@ -25,6 +25,7 @@ namespace Chapter3_Paint
         bool bCurve = false;
         bool isDrawPolygon = false;
         int width = 5;
+        bool isDraw = false;
         bool isDelete = false;
         SolidBrush myBrush;
         bool isPen = true;
@@ -161,7 +162,7 @@ namespace Chapter3_Paint
                     myObj.p2 = e.Location;
                     this.lstObject.Add(myObj);
                 }
-                if (this.bCurve == true)
+                if (this.bCurve == true && isDraw == false)
                 {
                     clsDrawObject myObj;
                     myObj = new clsCurve();
@@ -187,16 +188,26 @@ namespace Chapter3_Paint
 
             if (this.isPress == true)
             {
-
-                this.lstObject[this.lstObject.Count - 1].p2 = e.Location;
-                this.pnMain.Refresh(); 
-       
-                if (this.bCurve == true)
+                if(bCurve == true || bPolygon == true)
                 {
-                    this.lstObject[this.lstObject.Count - 1].points.Add(e.Location);
+                    isDraw = true;
+
+                    clsDrawObject c  = this.lstObject[this.lstObject.Count - 1];
+
+                    c.points[c.points.Count - 1] = e.Location;
+
+                    this.pnMain.Refresh();
+
+                }
+                else
+                {
+                    this.lstObject[this.lstObject.Count - 1].p2 = e.Location;
                     this.pnMain.Refresh();
                 }
+               
             }
+
+            this.lbLocation.Text = e.Location.ToString();
         }
 
         private void pnMain_Paint(object sender, PaintEventArgs e)
@@ -226,13 +237,17 @@ namespace Chapter3_Paint
             if (this.bPolygon == true)
             {
                 this.lstObject[this.lstObject.Count - 1].points.Add(e.Location);
+
+                this.isDrawPolygon = true;
+
                 this.pnMain.Refresh();
-                isDrawPolygon = true;
+      
 
             }
             if (this.bCurve == true)
             {
                 this.lstObject[this.lstObject.Count - 1].points.Add(e.Location);
+
                 this.pnMain.Refresh();
         
             }
@@ -241,7 +256,6 @@ namespace Chapter3_Paint
             this.bEcllipse = false;
             this.bRect = false;
             this.bSquare = false;
-            this.bCurve = false;
         }
 
         private void btnEllipse_Click(object sender, EventArgs e)
@@ -261,7 +275,8 @@ namespace Chapter3_Paint
 
         private void btnPolygon_Click(object sender, EventArgs e)
         {
-            this.bPolygon = true;
+            this.bPolygon = !this.bPolygon;
+         
         }
 
         private void btnCircle_Click(object sender, EventArgs e)
@@ -353,6 +368,21 @@ namespace Chapter3_Paint
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_MouseMove(object sender, MouseEventArgs e)
+        {
+           
+        }
+
+        private void lbLocation_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

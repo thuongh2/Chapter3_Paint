@@ -32,7 +32,7 @@ namespace Chapter3_Paint
         {
             var path = GetPath();
 
-            if (isSelect == false)
+            if (isBrush == false)
             {
                 g.DrawPath(myPen, path);
             }

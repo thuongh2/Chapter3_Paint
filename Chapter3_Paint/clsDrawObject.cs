@@ -28,6 +28,8 @@ namespace Chapter3_Paint
         public Color color;
         // duoc chon
         public bool isSelect;
+        // ve bang pen hoac bang Brush
+        public bool isBrush = false;
 
         // list cac diem
         public List<PointF> points = new List<PointF>();

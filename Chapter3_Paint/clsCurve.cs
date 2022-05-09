@@ -16,14 +16,16 @@ namespace Chapter3_Paint
 
         public override GraphicsPath GetPath()
         {
+         
             GraphicsPath path = new GraphicsPath();
+          
             if (points.Count < 3)
             {
                 path.AddLine(points[0], points[1]);
             }
             else
             {
-                path.AddPolygon(points.ToArray());
+                path.AddCurve(points.ToArray(), 0, points.ToArray().Length - 1, 0.8f);
             }
 
             return path;
