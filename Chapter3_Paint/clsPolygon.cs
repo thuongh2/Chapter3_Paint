@@ -44,10 +44,12 @@ namespace Chapter3_Paint
             g.DrawPath(myPen, path);
         }
         // set tat ca cac diem
-        public override void Move(Point d)
+        public override void Move(Point distance)
         {
-            p1 = new Point(p1.X + d.X, p1.Y + d.Y);
-            p2 = new Point(p2.X + d.X, p2.Y + d.Y);
+            for (int i = 0; i < points.Count; i++)
+            {
+                points[i] = new Point(points[i].X + distance.X, points[i].Y + distance.Y);
+            }
         }
     }
 }

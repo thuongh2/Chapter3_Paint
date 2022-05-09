@@ -47,6 +47,7 @@ namespace Chapter3_Paint
         {
             p1 = new Point(p1.X + d.X, p1.Y + d.Y);
             p2 = new Point(p2.X + d.X, p2.Y + d.Y);
+           
         }
 
 

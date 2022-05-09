@@ -32,7 +32,7 @@ namespace Chapter3_Paint
         public bool isBrush = false;
 
         // list cac diem
-        public List<PointF> points = new List<PointF>();
+        public List<Point> points = new List<Point>();
         // ve hinh
         public abstract void Draw(Graphics g);
         // tao tao do

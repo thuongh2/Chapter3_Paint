@@ -30,18 +30,12 @@
         {
             this.pnMain = new System.Windows.Forms.Panel();
             this.pnMenu = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.ptbColor = new System.Windows.Forms.PictureBox();
             this.btnDashDot = new System.Windows.Forms.Button();
             this.btnDash = new System.Windows.Forms.Button();
             this.btnSolid = new System.Windows.Forms.Button();
-            this.btnPurple = new System.Windows.Forms.Button();
-            this.btnYellow = new System.Windows.Forms.Button();
-            this.btnBlue = new System.Windows.Forms.Button();
-            this.btnRed = new System.Windows.Forms.Button();
-            this.btnLightGreen = new System.Windows.Forms.Button();
-            this.btnBrown = new System.Windows.Forms.Button();
-            this.btnGreen = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.btnBlack = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -58,9 +52,28 @@
             this.btnCircle = new System.Windows.Forms.Button();
             this.btnCurve = new System.Windows.Forms.Button();
             this.btnBrush = new System.Windows.Forms.Button();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.pictureBox17 = new System.Windows.Forms.PictureBox();
+            this.pictureBox18 = new System.Windows.Forms.PictureBox();
+            this.pictureBox19 = new System.Windows.Forms.PictureBox();
+            this.pictureBox20 = new System.Windows.Forms.PictureBox();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lbLocation = new System.Windows.Forms.Label();
             this.pnMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbColor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnLineSize)).BeginInit();
+            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // pnMain
@@ -68,7 +81,7 @@
             this.pnMain.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.pnMain.Location = new System.Drawing.Point(12, 118);
             this.pnMain.Name = "pnMain";
-            this.pnMain.Size = new System.Drawing.Size(1189, 490);
+            this.pnMain.Size = new System.Drawing.Size(1301, 490);
             this.pnMain.TabIndex = 0;
             this.pnMain.Paint += new System.Windows.Forms.PaintEventHandler(this.pnMain_Paint);
             this.pnMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnMain_MouseDown);
@@ -78,18 +91,12 @@
             // pnMenu
             // 
             this.pnMenu.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.pnMenu.Controls.Add(this.label5);
+            this.pnMenu.Controls.Add(this.ptbColor);
             this.pnMenu.Controls.Add(this.btnDashDot);
             this.pnMenu.Controls.Add(this.btnDash);
             this.pnMenu.Controls.Add(this.btnSolid);
-            this.pnMenu.Controls.Add(this.btnPurple);
-            this.pnMenu.Controls.Add(this.btnYellow);
-            this.pnMenu.Controls.Add(this.btnBlue);
-            this.pnMenu.Controls.Add(this.btnRed);
-            this.pnMenu.Controls.Add(this.btnLightGreen);
-            this.pnMenu.Controls.Add(this.btnBrown);
-            this.pnMenu.Controls.Add(this.btnGreen);
             this.pnMenu.Controls.Add(this.label4);
-            this.pnMenu.Controls.Add(this.btnBlack);
             this.pnMenu.Controls.Add(this.label3);
             this.pnMenu.Controls.Add(this.label2);
             this.pnMenu.Controls.Add(this.label1);
@@ -106,124 +113,74 @@
             this.pnMenu.Controls.Add(this.btnCircle);
             this.pnMenu.Controls.Add(this.btnCurve);
             this.pnMenu.Controls.Add(this.btnBrush);
+            this.pnMenu.Controls.Add(this.panel5);
             this.pnMenu.Location = new System.Drawing.Point(12, 9);
             this.pnMenu.Name = "pnMenu";
-            this.pnMenu.Size = new System.Drawing.Size(1189, 103);
+            this.pnMenu.Size = new System.Drawing.Size(1301, 103);
             this.pnMenu.TabIndex = 0;
             this.pnMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(847, 81);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(44, 16);
+            this.label5.TabIndex = 35;
+            this.label5.Text = "Styles";
+            // 
+            // ptbColor
+            // 
+            this.ptbColor.BackColor = System.Drawing.Color.Black;
+            this.ptbColor.Location = new System.Drawing.Point(967, 23);
+            this.ptbColor.Margin = new System.Windows.Forms.Padding(4);
+            this.ptbColor.Name = "ptbColor";
+            this.ptbColor.Size = new System.Drawing.Size(50, 43);
+            this.ptbColor.TabIndex = 34;
+            this.ptbColor.TabStop = false;
             // 
             // btnDashDot
             // 
             this.btnDashDot.BackgroundImage = global::Chapter3_Paint.Properties.Resources.dash_dot;
             this.btnDashDot.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnDashDot.Location = new System.Drawing.Point(800, 59);
+            this.btnDashDot.Location = new System.Drawing.Point(800, 56);
             this.btnDashDot.Name = "btnDashDot";
             this.btnDashDot.Size = new System.Drawing.Size(134, 25);
             this.btnDashDot.TabIndex = 32;
             this.btnDashDot.UseVisualStyleBackColor = true;
+            this.btnDashDot.Click += new System.EventHandler(this.btnDashDot_Click);
             // 
             // btnDash
             // 
             this.btnDash.BackgroundImage = global::Chapter3_Paint.Properties.Resources.dash_dot1;
             this.btnDash.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnDash.Location = new System.Drawing.Point(800, 33);
+            this.btnDash.Location = new System.Drawing.Point(800, 30);
             this.btnDash.Name = "btnDash";
             this.btnDash.Size = new System.Drawing.Size(134, 25);
             this.btnDash.TabIndex = 31;
             this.btnDash.UseVisualStyleBackColor = true;
+            this.btnDash.Click += new System.EventHandler(this.btnDash_Click);
             // 
             // btnSolid
             // 
             this.btnSolid.BackgroundImage = global::Chapter3_Paint.Properties.Resources.solid1;
             this.btnSolid.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnSolid.Location = new System.Drawing.Point(800, 6);
+            this.btnSolid.Location = new System.Drawing.Point(800, 4);
             this.btnSolid.Name = "btnSolid";
             this.btnSolid.Size = new System.Drawing.Size(134, 25);
             this.btnSolid.TabIndex = 30;
             this.btnSolid.UseVisualStyleBackColor = true;
-            // 
-            // btnPurple
-            // 
-            this.btnPurple.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnPurple.Location = new System.Drawing.Point(1060, 44);
-            this.btnPurple.Name = "btnPurple";
-            this.btnPurple.Size = new System.Drawing.Size(35, 35);
-            this.btnPurple.TabIndex = 29;
-            this.btnPurple.UseVisualStyleBackColor = false;
-            // 
-            // btnYellow
-            // 
-            this.btnYellow.BackColor = System.Drawing.Color.Yellow;
-            this.btnYellow.Location = new System.Drawing.Point(1060, 6);
-            this.btnYellow.Name = "btnYellow";
-            this.btnYellow.Size = new System.Drawing.Size(33, 35);
-            this.btnYellow.TabIndex = 28;
-            this.btnYellow.UseVisualStyleBackColor = false;
-            // 
-            // btnBlue
-            // 
-            this.btnBlue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnBlue.Location = new System.Drawing.Point(1021, 44);
-            this.btnBlue.Name = "btnBlue";
-            this.btnBlue.Size = new System.Drawing.Size(35, 35);
-            this.btnBlue.TabIndex = 27;
-            this.btnBlue.UseVisualStyleBackColor = false;
-            // 
-            // btnRed
-            // 
-            this.btnRed.BackColor = System.Drawing.Color.Red;
-            this.btnRed.Location = new System.Drawing.Point(1021, 6);
-            this.btnRed.Name = "btnRed";
-            this.btnRed.Size = new System.Drawing.Size(33, 35);
-            this.btnRed.TabIndex = 25;
-            this.btnRed.UseVisualStyleBackColor = false;
-            // 
-            // btnLightGreen
-            // 
-            this.btnLightGreen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnLightGreen.Location = new System.Drawing.Point(983, 44);
-            this.btnLightGreen.Name = "btnLightGreen";
-            this.btnLightGreen.Size = new System.Drawing.Size(35, 35);
-            this.btnLightGreen.TabIndex = 24;
-            this.btnLightGreen.UseVisualStyleBackColor = false;
-            // 
-            // btnBrown
-            // 
-            this.btnBrown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnBrown.Location = new System.Drawing.Point(983, 6);
-            this.btnBrown.Name = "btnBrown";
-            this.btnBrown.Size = new System.Drawing.Size(33, 35);
-            this.btnBrown.TabIndex = 23;
-            this.btnBrown.UseVisualStyleBackColor = false;
-            // 
-            // btnGreen
-            // 
-            this.btnGreen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnGreen.Location = new System.Drawing.Point(944, 44);
-            this.btnGreen.Name = "btnGreen";
-            this.btnGreen.Size = new System.Drawing.Size(35, 35);
-            this.btnGreen.TabIndex = 22;
-            this.btnGreen.UseVisualStyleBackColor = false;
+            this.btnSolid.Click += new System.EventHandler(this.btnSolid_Click);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(954, 82);
+            this.label4.Location = new System.Drawing.Point(1108, 84);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(112, 16);
+            this.label4.Size = new System.Drawing.Size(46, 16);
             this.label4.TabIndex = 21;
-            this.label4.Text = "Colors and Styles";
+            this.label4.Text = "Colors";
             this.label4.Click += new System.EventHandler(this.label4_Click);
-            // 
-            // btnBlack
-            // 
-            this.btnBlack.BackColor = System.Drawing.Color.Black;
-            this.btnBlack.Location = new System.Drawing.Point(944, 6);
-            this.btnBlack.Name = "btnBlack";
-            this.btnBlack.Size = new System.Drawing.Size(33, 35);
-            this.btnBlack.TabIndex = 1;
-            this.btnBlack.UseVisualStyleBackColor = false;
-            this.btnBlack.Click += new System.EventHandler(this.button2_Click);
             // 
             // label3
             // 
@@ -282,6 +239,7 @@
             this.btnSelect.TabStop = false;
             this.btnSelect.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnSelect.UseVisualStyleBackColor = true;
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
             // btnPolygon
             // 
@@ -311,7 +269,7 @@
             // 
             this.color.BackgroundImage = global::Chapter3_Paint.Properties.Resources.icon_color;
             this.color.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.color.Location = new System.Drawing.Point(1106, 11);
+            this.color.Location = new System.Drawing.Point(1218, 13);
             this.color.Name = "color";
             this.color.Size = new System.Drawing.Size(71, 61);
             this.color.TabIndex = 15;
@@ -395,6 +353,112 @@
             this.btnBrush.Size = new System.Drawing.Size(55, 51);
             this.btnBrush.TabIndex = 9;
             this.btnBrush.UseVisualStyleBackColor = true;
+            this.btnBrush.Click += new System.EventHandler(this.btnBrush_Click);
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.pictureBox17);
+            this.panel5.Controls.Add(this.pictureBox18);
+            this.panel5.Controls.Add(this.pictureBox19);
+            this.panel5.Controls.Add(this.pictureBox20);
+            this.panel5.Controls.Add(this.pictureBox6);
+            this.panel5.Controls.Add(this.pictureBox3);
+            this.panel5.Controls.Add(this.pictureBox2);
+            this.panel5.Controls.Add(this.pictureBox1);
+            this.panel5.Location = new System.Drawing.Point(1048, 6);
+            this.panel5.Margin = new System.Windows.Forms.Padding(4);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(164, 84);
+            this.panel5.TabIndex = 33;
+            // 
+            // pictureBox17
+            // 
+            this.pictureBox17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.pictureBox17.Location = new System.Drawing.Point(131, 50);
+            this.pictureBox17.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox17.Name = "pictureBox17";
+            this.pictureBox17.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox17.TabIndex = 31;
+            this.pictureBox17.TabStop = false;
+            this.pictureBox17.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // pictureBox18
+            // 
+            this.pictureBox18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.pictureBox18.Location = new System.Drawing.Point(90, 49);
+            this.pictureBox18.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox18.Name = "pictureBox18";
+            this.pictureBox18.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox18.TabIndex = 30;
+            this.pictureBox18.TabStop = false;
+            this.pictureBox18.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // pictureBox19
+            // 
+            this.pictureBox19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.pictureBox19.Location = new System.Drawing.Point(48, 49);
+            this.pictureBox19.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox19.Name = "pictureBox19";
+            this.pictureBox19.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox19.TabIndex = 29;
+            this.pictureBox19.TabStop = false;
+            this.pictureBox19.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // pictureBox20
+            // 
+            this.pictureBox20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.pictureBox20.Location = new System.Drawing.Point(7, 49);
+            this.pictureBox20.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox20.Name = "pictureBox20";
+            this.pictureBox20.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox20.TabIndex = 28;
+            this.pictureBox20.TabStop = false;
+            this.pictureBox20.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.BackColor = System.Drawing.Color.Yellow;
+            this.pictureBox6.Location = new System.Drawing.Point(131, 7);
+            this.pictureBox6.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox6.TabIndex = 21;
+            this.pictureBox6.TabStop = false;
+            this.pictureBox6.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.Red;
+            this.pictureBox3.Location = new System.Drawing.Point(90, 7);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox3.TabIndex = 20;
+            this.pictureBox3.TabStop = false;
+            this.pictureBox3.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Gray;
+            this.pictureBox2.Location = new System.Drawing.Point(49, 7);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox2.TabIndex = 19;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pictureBox2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Black;
+            this.pictureBox1.Location = new System.Drawing.Point(7, 7);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox1.TabIndex = 18;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // lbLocation
             // 
@@ -412,7 +476,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(1213, 637);
+            this.ClientSize = new System.Drawing.Size(1325, 637);
             this.Controls.Add(this.lbLocation);
             this.Controls.Add(this.pnMenu);
             this.Controls.Add(this.pnMain);
@@ -422,7 +486,17 @@
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
             this.pnMenu.ResumeLayout(false);
             this.pnMenu.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbColor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnLineSize)).EndInit();
+            this.panel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -439,7 +513,6 @@
         private System.Windows.Forms.Button btnPolygon;
         private System.Windows.Forms.Button btnCircle;
         private System.Windows.Forms.Button btnCurve;
-        private System.Windows.Forms.Button btnBlack;
         private System.Windows.Forms.Button color;
         private System.Windows.Forms.TrackBar btnLineSize;
         private System.Windows.Forms.Label label4;
@@ -450,17 +523,21 @@
         private System.Windows.Forms.Button btnSelect;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnBrush;
-        private System.Windows.Forms.Button btnPurple;
-        private System.Windows.Forms.Button btnYellow;
-        private System.Windows.Forms.Button btnBlue;
-        private System.Windows.Forms.Button btnRed;
-        private System.Windows.Forms.Button btnLightGreen;
-        private System.Windows.Forms.Button btnBrown;
-        private System.Windows.Forms.Button btnGreen;
         private System.Windows.Forms.Button btnSolid;
         private System.Windows.Forms.Button btnDashDot;
         private System.Windows.Forms.Button btnDash;
         private System.Windows.Forms.Label lbLocation;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.PictureBox pictureBox17;
+        private System.Windows.Forms.PictureBox pictureBox18;
+        private System.Windows.Forms.PictureBox pictureBox19;
+        private System.Windows.Forms.PictureBox pictureBox20;
+        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox ptbColor;
+        private System.Windows.Forms.Label label5;
     }
 }
 

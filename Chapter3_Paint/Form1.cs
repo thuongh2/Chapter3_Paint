@@ -23,13 +23,12 @@ namespace Chapter3_Paint
         bool bPolygon = false;
         bool bCircle = false;
         bool bCurve = false;
-        bool isDrawPolygon = false;
         int width = 5;
         bool isDraw = false;
         bool isDelete = false;
         SolidBrush myBrush;
         bool isPen = true;
-        bool isBrush = true;
+        bool isBrush = false;
         bool isSl = false;
         clsDrawObject selectedShape;
         List<clsDrawObject> deleteShape = new List<clsDrawObject>();
@@ -59,79 +58,115 @@ namespace Chapter3_Paint
             this.bLine = true;
         }
 
+        private void setShapes(clsDrawObject myObj, MouseEventArgs e)
+        {
+            myObj.isBrush = this.isBrush;
+
+            if(isBrush == false)
+            {
+                myObj.myPen = new Pen(myColor, width);
+
+                myObj.myPen.DashStyle = dashStyle;
+                // gan toa do diem dau va cuoi
+                
+            }    
+            else
+            {
+                myObj.myBrush = new System.Drawing.SolidBrush(myColor);
+
+
+            }
+            myObj.p1 = e.Location;
+
+
+            this.lstObject.Add(myObj);
+        }
+
         private void pnMain_MouseDown(object sender, MouseEventArgs e)
         {
             this.isPress = true;
+
             if(isSl)
             {
                 for (var i = lstObject.Count - 1; i >= 0; i--)
                     if (lstObject[i].HitTest(e.Location)) 
-                    { selectedShape = lstObject[i]; break; }
+                    { 
+                        selectedShape = lstObject[i];
+                        this.Refresh();
+                        break;
+                    }
                 if (selectedShape != null) 
-                    { moving = true; previousPoint = e.Location; }
+                { 
+                    moving = true;
+                    previousPoint = e.Location; 
+                }
             }    
-            if(isDelete)
+
+            else if (isDelete == true)
             {
                 for (var i = lstObject.Count - 1; i >= 0; i--)
                     if (lstObject[i].HitTest(e.Location))
                     {
                         lstObject.Remove(lstObject[i]);
+                        this.pnMain.Refresh();
                         isDelete = false;
                     }
 
-            }   
-            if(Form.ModifierKeys == Keys.Control)
+            }
+            if (Form.ModifierKeys == Keys.Control)
             {
                 for (var i = lstObject.Count - 1; i >= 0; i--)
+                {
                     if (lstObject[i].HitTest(e.Location))
                     {
                         deleteShape.Add(lstObject[i]);
                     }
+                }
+
+                foreach(var shape in deleteShape)
+                {
+                    lstObject.Remove(shape);
+                   
+                }
 
             }
-            if (isPress)
+            else if (isPress)
             {
                 if (this.bLine == true)
                 {
                     // Tao doi tuong duong thang
                     clsDrawObject myObj;
                     myObj = new clsLine();
-                    // Tao myPen
                     myObj.myPen = new Pen(myColor, width);
                     myObj.myPen.DashStyle = dashStyle;
-                    // gan toa do diem dau va cuoi
                     myObj.p1 = e.Location;
                     myObj.p2 = e.Location;
-
+                    
                     this.lstObject.Add(myObj);
+
                 }
                 if (this.bEcllipse == true)
                 {
                     clsDrawObject myObj;
                     myObj = new clsEllipse();
-                    myObj.myPen = new Pen(myColor, width);
-                    myObj.myPen.DashStyle = dashStyle;
-                    myObj.points.Add(e.Location);
-                    myObj.points.Add(e.Location);
-                    this.lstObject.Add(myObj);
+
+                    setShapes(myObj, e);
                 }
                 if (this.bRect == true)
                 {
                     clsDrawObject myObj;
                     myObj = new clsRectangle();
-                    myObj.myPen = new Pen(myColor, width);
-                    myObj.myPen.DashStyle = dashStyle;
-                    myObj.p1 = e.Location;
-                    this.lstObject.Add(myObj);
+
+                    setShapes(myObj, e);
+
                 }
                 if (this.bSquare == true)
                 {
                     clsDrawObject myObj;
                     myObj = new clsSquare();
-                    myObj.myPen = new Pen(myColor, width);
-                    myObj.myPen.DashStyle = dashStyle;
-                    myObj.p1 = e.Location;
-                    this.lstObject.Add(myObj);
+
+                    setShapes(myObj, e);
+
                 }
                 if (this.bPolygon == true)
                 {
@@ -140,7 +175,8 @@ namespace Chapter3_Paint
                     myObj = new clsPolygon();
                     myObj.myPen = new Pen(myColor, width);
                     myObj.myPen.DashStyle = dashStyle;
-                    if (isDrawPolygon == true)
+
+                    if (isDraw == true)
                     {
                         this.lstObject[this.lstObject.Count - 1].points.Add(e.Location);
                     }
@@ -157,10 +193,9 @@ namespace Chapter3_Paint
                     clsDrawObject myObj;
                     myObj = new clsCircle();
                     myObj.myPen = new Pen(myColor, width);
-                    myObj.myPen.DashStyle = dashStyle;
-                    myObj.p1 = e.Location;
-                    myObj.p2 = e.Location;
-                    this.lstObject.Add(myObj);
+
+                    setShapes(myObj, e);
+
                 }
                 if (this.bCurve == true && isDraw == false)
                 {
@@ -168,9 +203,17 @@ namespace Chapter3_Paint
                     myObj = new clsCurve();
                     myObj.myPen = new Pen(myColor, width);
                     myObj.myPen.DashStyle = dashStyle;
-                    myObj.points.Add(e.Location);
-                    myObj.points.Add(e.Location);
-                    this.lstObject.Add(myObj);
+
+                    if (isDraw == true)
+                    {
+                        this.lstObject[this.lstObject.Count - 1].points.Add(e.Location);
+                    }
+                    else
+                    {
+                        myObj.points.Add(e.Location);
+                        myObj.points.Add(e.Location);
+                        this.lstObject.Add(myObj);
+                    }
                 }
             }
                 
@@ -183,7 +226,9 @@ namespace Chapter3_Paint
                 var d = new Point(e.X - previousPoint.X, e.Y - previousPoint.Y);
                 selectedShape.Move(d);
                 previousPoint = e.Location;
-                this.Invalidate();
+                this.pnMain.Refresh();
+
+
             }
 
             if (this.isPress == true)
@@ -199,9 +244,12 @@ namespace Chapter3_Paint
                     this.pnMain.Refresh();
 
                 }
-                else
+                else if (bLine || bEcllipse || bRect || bSquare || bCircle)
                 {
-                    this.lstObject[this.lstObject.Count - 1].p2 = e.Location;
+                    if (this.lstObject.Count - 1 >= 0)
+                        this.lstObject[this.lstObject.Count - 1].p2 = e.Location;
+                    else
+                        this.lstObject[this.lstObject.Count].p2 = e.Location;
                     this.pnMain.Refresh();
                 }
                
@@ -225,37 +273,32 @@ namespace Chapter3_Paint
         {
             this.isPress = false;
 
-            if (e.Location != null)
+            if (bLine || bEcllipse || bRect || bSquare || bCircle)
             {
                 this.lstObject[this.lstObject.Count - 1].p2 = e.Location;
                 this.Refresh();
-               
+
             }
 
             if (moving) { selectedShape = null; moving = false; }
 
-            if (this.bPolygon == true)
+            if (this.bPolygon == true || this.bCurve == true)
             {
                 this.lstObject[this.lstObject.Count - 1].points.Add(e.Location);
 
-                this.isDrawPolygon = true;
+                this.isDraw = true;
 
                 this.pnMain.Refresh();
       
 
-            }
-            if (this.bCurve == true)
-            {
-                this.lstObject[this.lstObject.Count - 1].points.Add(e.Location);
-
-                this.pnMain.Refresh();
-        
             }
 
             this.bLine = false;
             this.bEcllipse = false;
             this.bRect = false;
             this.bSquare = false;
+            this.bCircle = false;
+            this.moving = false;
         }
 
         private void btnEllipse_Click(object sender, EventArgs e)
@@ -276,6 +319,8 @@ namespace Chapter3_Paint
         private void btnPolygon_Click(object sender, EventArgs e)
         {
             this.bPolygon = !this.bPolygon;
+            this.isBrush = false;
+            this.isDraw = false;
          
         }
 
@@ -286,7 +331,9 @@ namespace Chapter3_Paint
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.bCurve = true;
+            this.bCurve = !this.bCurve;
+            this.isDraw  = false;
+            this.bPolygon = false;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -350,6 +397,7 @@ namespace Chapter3_Paint
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 myColor = dlg.Color;
+                ptbColor.BackColor = this.myColor;
             }
         }
 
@@ -383,6 +431,39 @@ namespace Chapter3_Paint
         private void lbLocation_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void btnBrush_Click(object sender, EventArgs e)
+        {
+            this.isBrush = true;
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            PictureBox ptb = sender as PictureBox;
+            this.myColor = ptb.BackColor;
+            ptbColor.BackColor = this.myColor;
+
+        }
+
+        private void btnSolid_Click(object sender, EventArgs e)
+        {
+            this.dashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+        }
+
+        private void btnDash_Click(object sender, EventArgs e)
+        {
+            this.dashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+        }
+
+        private void btnDashDot_Click(object sender, EventArgs e)
+        {
+            this.dashStyle = System.Drawing.Drawing2D.DashStyle.DashDot;
+        }
+
+        private void btnSelect_Click(object sender, EventArgs e)
+        {
+            this.isSl = true;
         }
     }
 }

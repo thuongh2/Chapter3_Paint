@@ -24,7 +24,12 @@ namespace Chapter3_Paint
         {
             var result = false;
             var path = GetPath();
-            result = path.IsVisible(p);
+            if(isBrush == true)
+                result = path.IsVisible(p);
+            else
+                result = path.IsOutlineVisible(p, myPen);
+
+
             return result;
         }
 
