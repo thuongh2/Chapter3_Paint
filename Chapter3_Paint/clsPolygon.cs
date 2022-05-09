@@ -51,5 +51,13 @@ namespace Chapter3_Paint
                 points[i] = new Point(points[i].X + distance.X, points[i].Y + distance.Y);
             }
         }
+
+        public override void DrawSelect(Graphics g)
+        {
+            var path = this.GetPath();
+            Pen penSelect = new Pen(Color.BlueViolet, 3);
+            penSelect.DashStyle = DashStyle.Dot;
+            g.DrawPath(penSelect, path);
+        }
     }
 }

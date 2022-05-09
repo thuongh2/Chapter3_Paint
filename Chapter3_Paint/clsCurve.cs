@@ -47,8 +47,20 @@ namespace Chapter3_Paint
         // set tat ca cac diem
         public override void Move(Point d)
         {
-            p1 = new Point(p1.X + d.X, p1.Y + d.Y);
-            p2 = new Point(p2.X + d.X, p2.Y + d.Y);
+            for (int i = 0; i < points.Count; i++)
+            {
+                points[i] = new Point(points[i].X + d.X, points[i].Y + d.Y);
+            }
         }
+
+        public override void DrawSelect(Graphics g)
+        {
+            var path = this.GetPath();
+            Pen penSelect = new Pen(Color.BlueViolet, 3);
+            penSelect.DashStyle = DashStyle.Dot;
+            g.DrawPath(penSelect, path);
+        }
+
+
     }
 }

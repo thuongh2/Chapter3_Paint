@@ -26,7 +26,6 @@ namespace Chapter3_Paint
         int width = 5;
         bool isDraw = false;
         bool isDelete = false;
-        SolidBrush myBrush;
         bool isPen = true;
         bool isBrush = false;
         bool isSl = false;
@@ -45,7 +44,6 @@ namespace Chapter3_Paint
             gp = this.pnMain.CreateGraphics();
             myColor = Color.Red;
             myPen = new Pen(myColor, width);
-            myBrush= new SolidBrush(myColor);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -62,14 +60,14 @@ namespace Chapter3_Paint
         {
             myObj.isBrush = this.isBrush;
 
-            if(isBrush == false)
+            if (isBrush == false)
             {
                 myObj.myPen = new Pen(myColor, width);
 
                 myObj.myPen.DashStyle = dashStyle;
                 // gan toa do diem dau va cuoi
-                
-            }    
+
+            }
             else
             {
                 myObj.myBrush = new System.Drawing.SolidBrush(myColor);
@@ -86,21 +84,34 @@ namespace Chapter3_Paint
         {
             this.isPress = true;
 
-            if(isSl)
+            if (isSl)
             {
                 for (var i = lstObject.Count - 1; i >= 0; i--)
-                    if (lstObject[i].HitTest(e.Location)) 
-                    { 
+                {
+                    if (lstObject[i].HitTest(e.Location))
+                    {
                         selectedShape = lstObject[i];
+                        selectedShape.isSelect = true;
                         this.Refresh();
                         break;
                     }
-                if (selectedShape != null) 
-                { 
-                    moving = true;
-                    previousPoint = e.Location; 
+                    else
+                    {
+                        if (selectedShape != null)
+                        {
+                            selectedShape.isSelect = false;
+                            selectedShape = null;
+
+                        }
+                        this.pnMain.Refresh();
+                    }
                 }
-            }    
+                if (selectedShape != null)
+                {
+                    moving = true;
+                    previousPoint = e.Location;
+                }
+            }
 
             else if (isDelete == true)
             {
@@ -119,14 +130,19 @@ namespace Chapter3_Paint
                 {
                     if (lstObject[i].HitTest(e.Location))
                     {
-                        deleteShape.Add(lstObject[i]);
-                    }
-                }
+                        if (lstObject[i].isDelete == false)
+                        {
+                            lstObject[i].isDelete = true;
+                            deleteShape.Add(lstObject[i]);
+                        }
+                        else
+                        {
+                            lstObject[i].isSelect = false;
+                            deleteShape.Remove(lstObject[i]);
 
-                foreach(var shape in deleteShape)
-                {
-                    lstObject.Remove(shape);
-                   
+                        }
+                        this.pnMain.Refresh();
+                    }
                 }
 
             }
@@ -141,7 +157,7 @@ namespace Chapter3_Paint
                     myObj.myPen.DashStyle = dashStyle;
                     myObj.p1 = e.Location;
                     myObj.p2 = e.Location;
-                    
+
                     this.lstObject.Add(myObj);
 
                 }
@@ -216,7 +232,7 @@ namespace Chapter3_Paint
                     }
                 }
             }
-                
+
         }
 
         private void pnMain_MouseMove(object sender, MouseEventArgs e)
@@ -224,20 +240,24 @@ namespace Chapter3_Paint
             if (moving)
             {
                 var d = new Point(e.X - previousPoint.X, e.Y - previousPoint.Y);
+
+                //if (e.Location.Equals(selectedShape.p2))
+                //    selectedShape.ResizeShape(e.Location, previousPoint);
+
                 selectedShape.Move(d);
+      
                 previousPoint = e.Location;
                 this.pnMain.Refresh();
-
 
             }
 
             if (this.isPress == true)
             {
-                if(bCurve == true || bPolygon == true)
+                if (bCurve == true || bPolygon == true)
                 {
                     isDraw = true;
 
-                    clsDrawObject c  = this.lstObject[this.lstObject.Count - 1];
+                    clsDrawObject c = this.lstObject[this.lstObject.Count - 1];
 
                     c.points[c.points.Count - 1] = e.Location;
 
@@ -252,7 +272,7 @@ namespace Chapter3_Paint
                         this.lstObject[this.lstObject.Count].p2 = e.Location;
                     this.pnMain.Refresh();
                 }
-               
+
             }
 
             this.lbLocation.Text = e.Location.ToString();
@@ -260,13 +280,17 @@ namespace Chapter3_Paint
 
         private void pnMain_Paint(object sender, PaintEventArgs e)
         {
-        
-                for (int i = 0; i < this.lstObject.Count; i++)
-                {
-                    if (isPen == true)
-                        this.lstObject[i].Draw(e.Graphics);
-                }
-   
+
+            for (int i = 0; i < this.lstObject.Count; i++)
+            {
+                if (isPen == true)
+                    this.lstObject[i].Draw(e.Graphics);
+                if (isSl == true && selectedShape != null)
+                    selectedShape.DrawSelect(e.Graphics);
+                if (deleteShape != null)
+                    deleteShape.ForEach(shape => shape.DrawSelect(e.Graphics));
+            }
+
         }
 
         private void pnMain_MouseUp(object sender, MouseEventArgs e)
@@ -280,7 +304,11 @@ namespace Chapter3_Paint
 
             }
 
-            if (moving) { selectedShape = null; moving = false; }
+            if (moving)
+            {
+                selectedShape = null;
+                moving = false;
+            }
 
             if (this.bPolygon == true || this.bCurve == true)
             {
@@ -289,7 +317,7 @@ namespace Chapter3_Paint
                 this.isDraw = true;
 
                 this.pnMain.Refresh();
-      
+
 
             }
 
@@ -321,18 +349,18 @@ namespace Chapter3_Paint
             this.bPolygon = !this.bPolygon;
             this.isBrush = false;
             this.isDraw = false;
-         
+
         }
 
         private void btnCircle_Click(object sender, EventArgs e)
         {
-            this.bCircle = true;    
+            this.bCircle = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             this.bCurve = !this.bCurve;
-            this.isDraw  = false;
+            this.isDraw = false;
             this.bPolygon = false;
         }
 
@@ -375,16 +403,21 @@ namespace Chapter3_Paint
         private void button9_Click(object sender, EventArgs e)
         {
             this.isDelete = true;
+
+            if (deleteShape != null)
+            {
+                foreach (clsDrawObject cls in deleteShape)
+                {
+                    lstObject.Remove(cls);
+                    this.pnMain.Refresh();
+                }
+            }
         }
 
-        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            
-        }
 
         private void button10_Click(object sender, EventArgs e)
         {
-            foreach(var de in deleteShape)
+            foreach (var de in deleteShape)
             {
                 lstObject.Remove(de);
                 this.Refresh();
@@ -404,7 +437,7 @@ namespace Chapter3_Paint
 
         private void btnLineSize_Scroll(object sender, EventArgs e)
         {
-            width = (int)(btnLineSize.Value +1);
+            width = (int)(btnLineSize.Value + 1);
         }
 
         private void btnLine_MouseHover(object sender, EventArgs e)
@@ -413,25 +446,6 @@ namespace Chapter3_Paint
             t1.SetToolTip(this.btnLine, "Line");
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_MouseMove(object sender, MouseEventArgs e)
-        {
-           
-        }
-
-        private void lbLocation_Click(object sender, EventArgs e)
-        {
-            
-        }
 
         private void btnBrush_Click(object sender, EventArgs e)
         {
@@ -463,7 +477,16 @@ namespace Chapter3_Paint
 
         private void btnSelect_Click(object sender, EventArgs e)
         {
-            this.isSl = true;
+            this.bCurve = false;
+
+            this.isSl = !this.isSl;
+            if (selectedShape != null)
+            {
+                selectedShape.isSelect = false;
+            }
+            this.pnMain.Refresh();
+
         }
+
     }
 }

@@ -30,6 +30,8 @@ namespace Chapter3_Paint
         public bool isSelect;
         // ve bang pen hoac bang Brush
         public bool isBrush = false;
+        // danh dau hinh duoc xoa
+        public bool isDelete = false;
 
         // list cac diem
         public List<Point> points = new List<Point>();
@@ -66,6 +68,27 @@ namespace Chapter3_Paint
             return rectXY;
         }
 
+        public virtual void DrawSelect(Graphics g)
+        {
+            if (isSelect || isDelete)
+            {
+                Pen penSelect = new Pen(Color.BlueViolet, 3);
+                penSelect.DashStyle = DashStyle.Dot;
+                Brush myBrush = new System.Drawing.SolidBrush(Color.Chocolate);
+                Point pS1 = new Point(p1.X - 2, p1.Y -2);
+                Point pS2 = new Point(p2.X + 2, p2.Y + 2);
+                g.DrawRectangle(penSelect, getRectangle(pS1, pS2));
+                g.FillRectangle(myBrush, p2.X, p2.Y, 8, 8);
+            }
+        }
+
+        public virtual void ResizeShape(Point pointCurrent, Point previous)
+        {
+            int deltaX = pointCurrent.X - previous.X;
+            int deltaY = pointCurrent.Y - previous.Y;
+
+            p2 = new Point(p2.X + deltaX, p2.Y + deltaY);
+        }
 
         
     }

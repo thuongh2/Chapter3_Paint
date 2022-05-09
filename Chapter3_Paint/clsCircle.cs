@@ -50,6 +50,18 @@ namespace Chapter3_Paint
            
         }
 
+        public override void DrawSelect(Graphics g)
+        {
+            if (isSelect || isDelete)
+            {
+                Pen penSelect = new Pen(Color.BlueViolet, 3);
+                penSelect.DashStyle = DashStyle.Dot;
+                Point pS1 = new Point(p1.X - 2, p1.Y - 2);
+                Point pS2 = new Point(p2.X + 2, p2.Y + 2);
+                g.DrawRectangle(penSelect, getSquare(pS1, pS2));
+            }
+        }
+
 
     }
 }

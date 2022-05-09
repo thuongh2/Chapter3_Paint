@@ -131,7 +131,7 @@
             // 
             // ptbColor
             // 
-            this.ptbColor.BackColor = System.Drawing.Color.Black;
+            this.ptbColor.BackColor = System.Drawing.Color.Red;
             this.ptbColor.Location = new System.Drawing.Point(967, 23);
             this.ptbColor.Margin = new System.Windows.Forms.Padding(4);
             this.ptbColor.Name = "ptbColor";
@@ -180,7 +180,6 @@
             this.label4.Size = new System.Drawing.Size(46, 16);
             this.label4.TabIndex = 21;
             this.label4.Text = "Colors";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label3
             // 
@@ -468,13 +467,12 @@
             this.lbLocation.Size = new System.Drawing.Size(27, 16);
             this.lbLocation.TabIndex = 0;
             this.lbLocation.Text = "0, 0";
-            this.lbLocation.Click += new System.EventHandler(this.lbLocation_Click);
-            this.lbLocation.MouseMove += new System.Windows.Forms.MouseEventHandler(this.label5_MouseMove);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(1325, 637);
             this.Controls.Add(this.lbLocation);
@@ -483,7 +481,6 @@
             this.Name = "Form1";
             this.Text = "Paint";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
             this.pnMenu.ResumeLayout(false);
             this.pnMenu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptbColor)).EndInit();
